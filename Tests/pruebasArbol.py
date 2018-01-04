@@ -18,3 +18,5 @@ p1pertenece = arbol.pertenece(p2)
 p4pertenece = arbol.pertenece(p4)
 
 print("Si todo funciona bien p1 pertenece = "+p1pertenece.__str__()+" pero p4 tiene el valor "+p4pertenece.__str__())
+
+arbol.listarAscendente()
