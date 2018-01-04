@@ -120,6 +120,45 @@ class Arbol():
 
 
 
+    def eliminarMinimo(self):
+        """
+        Elimina el elemento con valor minimo en el arbol
+        :return:
+        """
+        self.NodoRaiz = Arbol.eliminarMin(self, self.NodoRaiz)
+
+
+    def eliminarMin(self, nodo):
+        """
+            El algoritmo recibe un nodo, si es nodo es null lregresa ese nodo
+
+    Si el nodo que nos pasaron no es nulo,entonces se fija, si el nodo A tiene
+    un nodo izquierdo distinto de null  trata de setear como nodoIZq el resultado
+    de eliminarMin a su nodo izquierdo actual y regresa A, de lo contrario retrna
+    a.nododerecho.
+
+    Imaginemos lo siguiente, nos pasan la raiz que tiene un 10, el algoritmo se
+    fija, a == null? la respuesta es NO, entonces sigue con lo demas, si hubiera
+    sido null regresaba el nodo.
+
+    Entonces se fija el nodo A tiene un valor en la izquierda distinto de null?
+    si A tiene un valor en la izquierda distinto de null significa que ahi hay
+    un nodo en cuyo caso va a hacer a.setnodoizquierdo eliminarminimo de su nodo
+    izquierdo, si nodo izquierdo tiene un nodo izquierdo en null, se va a retornar
+    A que es null, por lo que el nodo izquierdo anterio se elimina.
+
+    Si el nodo izquierdo ya era null regersamos el nodo derecho como uevo valor
+    de A
+        """
+        if nodo is None:
+            return nodo
+
+        if nodo.NodoIzquierdo is not None:
+            nodo.NodoIzquierdo = Arbol.eliminarMin(self, nodo.NodoIzquierdo)
+            return nodo
+        else:
+            return nodo.NodoDerecho
+
 
 
 
