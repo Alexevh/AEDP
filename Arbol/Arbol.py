@@ -154,10 +154,45 @@ class Arbol():
             return nodo
 
         if nodo.NodoIzquierdo is not None:
-            nodo.NodoIzquierdo = Arbol.eliminarMin(self, nodo.NodoIzquierdo)
+            nodo.NodoIzquierdo = self.eliminarMin(nodo.NodoIzquierdo)
             return nodo
         else:
             return nodo.NodoDerecho
+
+
+
+    def buscarElemento(self, nodo):
+        """
+        Funcion que llama a la recursiva
+        :param nodo:
+        :return:
+        """
+        return Arbol.buscar(self.NodoRaiz, nodo)
+
+
+    def buscar(nodo, elemento):
+        """
+        La recursiva va a buscar el elemento, comenzando en la raiz
+
+        Los casos base son simples, si el nodo es null devolvemos null, si el nodo es lo que
+        estamos buscando entonces encontramos el elemento y lo devolvemos
+
+        :param elemento:
+        :return:
+        """
+
+        if nodo is None:
+            return None
+        if nodo.persona.documento == elemento.documento:
+            return nodo
+
+        #Recursiva
+        retorno = Arbol.buscar(nodo.NodoIzquierdo, elemento)
+        if retorno==None:
+            return Arbol.buscar(nodo.NodoDerecho, elemento)
+        else:
+            return retorno
+
 
 
 
