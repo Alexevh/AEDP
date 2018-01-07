@@ -1,5 +1,6 @@
 from Arbol.Arbol import Arbol, NodoArbol
 from Dominio.Persona import Persona
+import unittest
 
 
 #Generamos 3 personas
@@ -31,3 +32,11 @@ print("El nodo P1 se encontro y el valor es :"+nodoBuscado.persona.nombre)
 print("Vamos a buscar un nodo que no exista")
 nodoBuscado2 = arbol.buscarElemento(p4)
 print("El nodo P4 no se encontro y el valor es :"+str(nodoBuscado2))
+
+print("Vamos a probar la cantidad de Hojas")
+cantidadHojas = arbol.cantidadHojas()
+print("El arbol tiene : "+str(cantidadHojas)+" hojas ")
+
+print("Obtenemos la altura del arbol")
+altura = arbol.altura()
+print("la altura del arbol es de "+str(altura))

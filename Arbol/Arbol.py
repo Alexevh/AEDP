@@ -195,5 +195,84 @@ class Arbol():
 
 
 
+    def cantidadHojas(self):
+        return self.cantidadHojasRaiz(self.NodoRaiz)
+
+    def cantidadHojasRaiz(self, nodo):
+        """
+        Es la recursiva que implementa el metodo anterior, una hoja en un arbol es aquel nodo que no tiene
+        hijos
+
+            /* El metodo va a contabilizar la cantidad de hojas a partir de un nodo
+        normalmente lo vamos a llamar desde la raiz
+
+        Si el nodo es null devolvemos cero, si el nodo no es null pero su nodo izq
+        si es null retornamos 1+ el resultado del mismo metodo para el nododerecho
+        en cambio si en nodoizq no es null retornamos la recursiva del nodoizquirdo + la
+        recursiva del derecho
+
+        Ejemplo
+
+        Ejecutamos el procedimiento en la raiz que no es null y tiene un 10, el
+        metodo se fija, el nodoiz es nulo? en este caso no, y tiene un valor de 9
+        entonces como no es null va a ejecutar return recursiva(nodo.izq) + la
+        recursiva(nodo.der)
+
+        Imagineos que el nodo que tiene valor de 9 no tiene un izquierdo pero si
+        un derecho, en esa segunda ejecucion la primera parte nos devuelve 1+ el
+        resultado de la recursiva para el derecho.
+
+        El derecho tiene un valor de 11, pero no tiene hijos, nos devuelve 1
+
+
+        :param nodo:
+        :return:
+        """
+        if nodo is None:
+            return 0
+        elif nodo.NodoIzquierdo is None:
+            return 1+ self.cantidadHojasRaiz(nodo.NodoDerecho)
+        else:
+            return self.cantidadHojasRaiz(nodo.NodoIzquierdo)+ self.cantidadHojasRaiz(nodo.NodoDerecho)
+
+    def altura(self):
+        return self.obtenerAltura(self.NodoRaiz)
+
+
+    def obtenerAltura(self, nodo):
+
+        """
+            El caso base es si el nodo == null devolvemos -1
+
+    IMaginemos el arbol tiene el nodo raiz con un 10, se llama la funcion, el nodo
+    no es null.
+
+    La primera pasada se guardan dos enteros izq y der, si ambos tienen datos
+    ninguno da -1 por lo que se repite la funcion.
+
+    Imaginemos que el 10 tenia dos hijos, 9 y 11, esa pasada repite la funcion
+    el 9 tiene un hijo 8 y el 11 no tiene ninguno.
+
+
+
+    En la segunda pasada altura de derecha va a ser -1por lo que izquirda va a
+    ser mayor por lo que devolvemos izq+1
+
+    La recursiva altura(nodoizq) y derecho se ejecuta en el else hasta que
+    encuentra el null.
+        :param nodo:
+        :return:
+        """
+
+        if nodo is None:
+            return -1
+        else:
+            altIzq = self.obtenerAltura(nodo.NodoIzquierdo)
+            altDer = self.obtenerAltura(nodo.NodoDerecho)
+
+            if (altIzq > altDer):
+                return altIzq+1
+            else:
+                return altDer+1
 
 
