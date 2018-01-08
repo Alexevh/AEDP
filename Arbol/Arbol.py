@@ -276,3 +276,24 @@ class Arbol():
                 return altDer+1
 
 
+    def cantidadNodos(self):
+        """
+        Obtengo la cantidad de nodos del arbol en un entero
+        :return:
+        """
+        return self.cantidadNodosArbol(self.NodoRaiz)
+
+
+    def cantidadNodosArbol(self, nodo):
+
+        cont = 0
+
+        if nodo is not None:
+            cont+= self.cantidadNodosArbol(nodo.NodoIzquierdo)
+            cont= cont+1
+            cont += self.cantidadNodosArbol(nodo.NodoDerecho)
+
+        return cont
+
+    def esVacio(self):
+        return self.NodoRaiz is None

@@ -22,6 +22,8 @@ print("Si todo funciona bien p1 pertenece = "+p1pertenece.__str__()+" pero p4 ti
 
 arbol.listarAscendente()
 
+
+
 arbol.eliminarMinimo()
 print("Luego de eliminar el minimo nos queda")
 arbol.listarAscendente()
@@ -40,3 +42,10 @@ print("El arbol tiene : "+str(cantidadHojas)+" hojas ")
 print("Obtenemos la altura del arbol")
 altura = arbol.altura()
 print("la altura del arbol es de "+str(altura))
+
+print("Voy a contar los nodos")
+cantNodos = arbol.cantidadNodos()
+print("El arbol tiene "+str(cantNodos)+" nodos")
+
+esVacio = arbol.esVacio()
+print("El arbo es vacio? "+str(esVacio))
