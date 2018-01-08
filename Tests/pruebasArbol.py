@@ -49,3 +49,7 @@ print("El arbol tiene "+str(cantNodos)+" nodos")
 
 esVacio = arbol.esVacio()
 print("El arbo es vacio? "+str(esVacio))
+
+arbol.borrarElemento(p1)
+print("Luego de borrar a P2 listo elarbol")
+arbol.listarAscendente()

@@ -297,3 +297,81 @@ class Arbol():
 
     def esVacio(self):
         return self.NodoRaiz is None
+
+
+    def borrarElemento(self, elemento):
+
+        nodoPadre = self.NodoRaiz
+        nodoAuxiliar = self.NodoRaiz
+        esHijoIzq = True
+
+        while (nodoAuxiliar.persona.documento != elemento.documento):
+
+            nodoPadre = nodoAuxiliar
+
+            if (elemento.documento < nodoAuxiliar.persona.documento):
+                esHijoIzq = True
+                nodoAuxiliar = nodoAuxiliar.NodoIzquierdo
+            else:
+                esHijoIzq = False
+                nodoAuxiliar = nodoAuxiliar.NodoDerecho
+
+            if nodoAuxiliar is None:
+                return False
+
+        #El nodo es hoja o unico nodo
+        if nodoAuxiliar.NodoIzquierdo is None and nodoAuxiliar.NodoDerecho is None:
+
+            #Si es la raiz la ponemos en null
+            if (nodoAuxiliar.persona.documento == self.NodoRaiz.persona.documento):
+                self.NodoRaiz = None
+            #Si no es la raiz, siendo hoja tiene un padre
+            elif (esHijoIzq):
+                nodoPadre.NodoIzquierdo = None
+            else:
+                nodoPadre.NodoDerecho = None
+
+        elif nodoAuxiliar.NodoDerecho is None:
+            if nodoAuxiliar == self.NodoRaiz:
+                self.NodoRaiz = nodoAuxiliar.NodoIzquierdo
+            elif(esHijoIzq):
+                nodoPadre.NodoIzquierdo=nodoAuxiliar.NodoIzquierdo
+            else:
+                nodoPadre.NodoDerecho= nodoAuxiliar.NodoIzquierdo
+        elif nodoAuxiliar.NodoIzquierdo is None:
+            if nodoAuxiliar == self.NodoRaiz:
+                self.NodoRaiz = nodoAuxiliar.NodoDerecho
+            elif(esHijoIzq):
+                nodoPadre.NodoIzquierdo=nodoAuxiliar.NodoDerecho
+            else:
+                nodoPadre.NodoDerecho = nodoAuxiliar.NodoDerecho
+        else:
+            reemplazo = self.obtenerReemplazo(nodoAuxiliar)
+            if (nodoAuxiliar==self.NodoRaiz):
+                self.NodoRaiz= reemplazo
+            elif(esHijoIzq):
+                nodoPadre.NodoIzquierdo=reemplazo
+            else:
+                nodoPadre.NodoDerecho=reemplazo
+
+            reemplazo.NodoIzquierdo = nodoAuxiliar.NodoIzquierdo
+
+        return  True
+
+
+    def obtenerReemplazo(self, nodo):
+
+        reemplazarPadre = nodo
+        reemplazo = nodo
+        auxiliar = nodo.NodoDerecho
+
+        while (auxiliar is not None):
+            reemplazarPadre = reemplazo
+            reemplazo = auxiliar
+            auxiliar = auxiliar.NodoIzquierdo
+
+        if (reemplazo!=nodo.NodoDerecho):
+            reemplazarPadre.NodoIzquierdo = reemplazo.NodoDerecho
+            reemplazo.NodoDerecho = nodo.NodoDerecho
+
+        return reemplazo
