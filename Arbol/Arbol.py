@@ -8,7 +8,7 @@ class Arbol():
 
 
 
-    def insertarOrdenado(self, persona):
+    def insertarOrdenado(self, objeto):
         """
         La funcion es accesoria, si el nodo raiz esta vacio entonces el arbol esta vacio y ponemos a la persona
         en la raiz ya que es el primer nodo.
@@ -20,14 +20,14 @@ class Arbol():
         :return:
         """
         if self.NodoRaiz is None:
-            nodo = NodoArbol(persona)
+            nodo = NodoArbol(objeto)
             self.NodoRaiz = nodo
         else:
-            Arbol.insertarelemento(persona, self.NodoRaiz)
+            Arbol.insertarelemento(objeto, self.NodoRaiz)
 
 
 
-    def insertarelemento(persona, nodo):
+    def insertarelemento(objeto, nodo):
         """
         Primero comparamos si el nodo que estamos visitando tiene un valor mayor a lo que nos estan pasando,
         o sea en el caso del ejemplo de persona si el documento de la nueva es mayor o menor a la que esta
@@ -47,30 +47,30 @@ class Arbol():
         :return:
         """
 
-        if nodo.persona.documento > persona.documento:
+        if nodo.objeto > objeto:
             if nodo.NodoIzquierdo is None:
-                n = NodoArbol(persona)
+                n = NodoArbol(objeto)
                 nodo.NodoIzquierdo = n
             else:
-                Arbol.insertarelemento(persona, nodo.NodoIzquierdo)
+                Arbol.insertarelemento(objeto, nodo.NodoIzquierdo)
 
         elif nodo.NodoDerecho is None:
-            n = NodoArbol(persona)
+            n = NodoArbol(objeto)
             nodo.NodoDerecho = n
         else:
-            Arbol.insertarelemento(persona, nodo.NodoDerecho)
+            Arbol.insertarelemento(objeto, nodo.NodoDerecho)
 
 
-    def pertenece(self, persona):
+    def pertenece(self, objeto):
         """
         El metodo recibe un objeto y devolvera True si el elemento se encuentra dentro del arbol y False en el
         caso contrario
         :param persona:
         :return: Boolean, True o False
         """
-        return Arbol.personaPertenece(persona, self.NodoRaiz)
+        return Arbol.personaPertenece(objeto, self.NodoRaiz)
 
-    def personaPertenece(persona, nodo):
+    def personaPertenece(objeto, nodo):
         """
         Recursiva que implementa el pertenece
 
@@ -87,13 +87,13 @@ class Arbol():
         if nodo is None:
             return False
 
-        if persona.documento == nodo.persona.documento:
+        if objeto == nodo.objeto:
             return True
 
-        if nodo.persona.documento > persona.documento:
-            return Arbol.personaPertenece(persona, nodo.NodoIzquierdo)
+        if nodo.objeto > objeto:
+            return Arbol.personaPertenece(objeto, nodo.NodoIzquierdo)
         else:
-            return Arbol.personaPertenece(persona, nodo.NodoDerecho)
+            return Arbol.personaPertenece(objeto, nodo.NodoDerecho)
 
 
 
@@ -115,7 +115,7 @@ class Arbol():
             return None
         else:
             Arbol.listarAscendenteInOrder(self, nodo.NodoIzquierdo)
-            print(nodo.persona.documento)
+            print(nodo.objeto.documento)
             Arbol.listarAscendenteInOrder(self, nodo.NodoDerecho)
 
 
@@ -183,7 +183,7 @@ class Arbol():
 
         if nodo is None:
             return None
-        if nodo.persona.documento == elemento.documento:
+        if nodo.objeto == elemento:
             return nodo
 
         #Recursiva
@@ -305,11 +305,11 @@ class Arbol():
         nodoAuxiliar = self.NodoRaiz
         esHijoIzq = True
 
-        while (nodoAuxiliar.persona.documento != elemento.documento):
+        while (nodoAuxiliar.objeto != elemento):
 
             nodoPadre = nodoAuxiliar
 
-            if (elemento.documento < nodoAuxiliar.persona.documento):
+            if (elemento < nodoAuxiliar.objeto):
                 esHijoIzq = True
                 nodoAuxiliar = nodoAuxiliar.NodoIzquierdo
             else:
@@ -323,7 +323,7 @@ class Arbol():
         if nodoAuxiliar.NodoIzquierdo is None and nodoAuxiliar.NodoDerecho is None:
 
             #Si es la raiz la ponemos en null
-            if (nodoAuxiliar.persona.documento == self.NodoRaiz.persona.documento):
+            if (nodoAuxiliar.objeto == self.NodoRaiz.objeto):
                 self.NodoRaiz = None
             #Si no es la raiz, siendo hoja tiene un padre
             elif (esHijoIzq):
