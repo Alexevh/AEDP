@@ -23,11 +23,11 @@ class Arbol():
             nodo = NodoArbol(objeto)
             self.NodoRaiz = nodo
         else:
-            Arbol.insertarelemento(objeto, self.NodoRaiz)
+            self.insertarelemento(objeto, self.NodoRaiz)
 
 
 
-    def insertarelemento(objeto, nodo):
+    def insertarelemento(self, objeto, nodo):
         """
         Primero comparamos si el nodo que estamos visitando tiene un valor mayor a lo que nos estan pasando,
         o sea en el caso del ejemplo de persona si el documento de la nueva es mayor o menor a la que esta
@@ -52,13 +52,13 @@ class Arbol():
                 n = NodoArbol(objeto)
                 nodo.NodoIzquierdo = n
             else:
-                Arbol.insertarelemento(objeto, nodo.NodoIzquierdo)
+                self.insertarelemento(objeto, nodo.NodoIzquierdo)
 
         elif nodo.NodoDerecho is None:
             n = NodoArbol(objeto)
             nodo.NodoDerecho = n
         else:
-            Arbol.insertarelemento(objeto, nodo.NodoDerecho)
+            self.insertarelemento(objeto, nodo.NodoDerecho)
 
 
     def pertenece(self, objeto):
@@ -68,9 +68,9 @@ class Arbol():
         :param persona:
         :return: Boolean, True o False
         """
-        return Arbol.personaPertenece(objeto, self.NodoRaiz)
+        return self.personaPertenece(objeto, self.NodoRaiz)
 
-    def personaPertenece(objeto, nodo):
+    def personaPertenece(self, objeto, nodo):
         """
         Recursiva que implementa el pertenece
 
@@ -91,9 +91,9 @@ class Arbol():
             return True
 
         if nodo.objeto > objeto:
-            return Arbol.personaPertenece(objeto, nodo.NodoIzquierdo)
+            return self.personaPertenece(objeto, nodo.NodoIzquierdo)
         else:
-            return Arbol.personaPertenece(objeto, nodo.NodoDerecho)
+            return self.personaPertenece(objeto, nodo.NodoDerecho)
 
 
 
